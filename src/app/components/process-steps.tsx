@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const steps = [
   { label: "Plan", desc: "We align on goals and success metrics." },
@@ -8,30 +9,49 @@ const steps = [
   { label: "Develop", desc: "We build robust, scalable solutions." },
   { label: "Launch", desc: "We deploy with observability and care." },
   { label: "Grow", desc: "We iterate to improve performance." },
-]
+];
 
-export function ProcessSteps() {
+export default function ProcessSteps() {
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+  }, []);
+
   return (
-    <div id="process">
-      <h2 className="text-3xl md:text-4xl font-semibold text-center mb-10">Our Process</h2>
-      <div className="grid md:grid-cols-5 gap-4">
-        {steps.map((s, i) => (
-          <motion.div
-            key={s.label}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: i * 0.05 }}
-            whileHover={{ y: -4 }}
-            className="bg-muted rounded-xl border p-5 text-center"
-          >
-            <div className="text-sm font-semibold">
-              {i + 1}. {s.label}
-            </div>
-            <p className="text-sm text-muted-foreground mt-2">{s.desc}</p>
-          </motion.div>
-        ))}
+    <section id="process" className="py-20 bg-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-semibold text-center text-black mb-16"
+        >
+          Our Process
+        </motion.h2>
+
+        <div className="grid md:grid-cols-5 gap-6">
+          {steps.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -6, scale: 1.05 }}
+              className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-xl transition-all"
+            >
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white font-semibold mb-4 mx-auto text-sm md:text-base">
+                {i + 1}
+              </div>
+              <h3 className="font-semibold text-lg text-black text-center">{s.label}</h3>
+              <p className="text-gray-600 text-sm mt-2 text-center">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </div>
-  )
+    </section>
+  );
 }

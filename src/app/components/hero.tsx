@@ -1,16 +1,26 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Hero() {
+  // Load custom font dynamically (Google Fonts example)
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+  }, []);
+
   return (
     <section
       id="home"
-      className="relative h-[85vh] min-h-[560px] isolate flex items-center justify-center"
+      className="relative h-[85vh] min-h-[560px] isolate flex items-center justify-center font-sans"
+      style={{ fontFamily: "'Poppins', sans-serif" }}
     >
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+        src="https://www.pexels.com/download/video/6828728/"
         autoPlay
         muted
         loop
@@ -23,7 +33,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-balance text-4xl md:text-6xl font-semibold text-white"
+          className="text-4xl md:text-6xl font-semibold text-white"
         >
           Your Partner for Modern Web, Apps, and Growth
         </motion.h1>
@@ -32,7 +42,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-4 md:mt-6 text-pretty text-white/85 text-base md:text-lg"
+          className="mt-4 md:mt-6 text-white/85 text-base md:text-lg"
         >
           We design, build, and scale digital products that convert — end to end.
         </motion.p>
@@ -45,7 +55,7 @@ export default function Hero() {
         >
           <a
             href="#contact"
-            className="inline-flex items-center rounded-full bg-black text-white px-6 py-3 text-sm font-medium hover:bg-gray-900 transition"
+            className="inline-flex items-center rounded-full  text-white px-6 py-3 text-sm font-medium hover:bg-white hover:text-black transition"
           >
             Get a Free Quote
           </a>
@@ -58,5 +68,5 @@ export default function Hero() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

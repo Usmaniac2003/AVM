@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const services: Array<{ title: string; desc: string }> = [
   { title: "Website Development", desc: "High-performance, SEO-ready sites that look great on every device." },
@@ -9,11 +10,22 @@ const services: Array<{ title: string; desc: string }> = [
   { title: "Digital Marketing", desc: "Performance-focused SEO, PPC, and social that drives measurable ROI." },
   { title: "Brand & Design", desc: "Identity, design systems, 2D/3D visuals, and motion graphics." },
   { title: "AI & Automation", desc: "Content assistants, analytics, and creative tooling powered by AI." },
-]
+];
 
 export default function ServicesGrid() {
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+  }, []);
+
   return (
-    <section id="services" className="py-20 bg-white">
+    <section
+      id="services"
+      className="py-20 bg-white"
+      style={{ fontFamily: "'Poppins', sans-serif" }}
+    >
       <div className="max-w-6xl mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -46,5 +58,5 @@ export default function ServicesGrid() {
         </div>
       </div>
     </section>
-  )
+  );
 }
